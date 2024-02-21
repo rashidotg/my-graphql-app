@@ -1,0 +1,27 @@
+type Bank {
+  id: ID!
+  name: String!
+  routing: Int
+}
+
+type Account {
+  id: ID!
+  balance: Float!
+  description: String
+  bank: Bank
+}
+
+type Query {
+  findAllBanks: [Bank]!
+  countBanks: Int!
+  findAllAccounts: [Account]!
+  findAccountById(id: ID!): Account
+  countAccounts: Int!
+}
+
+type Mutation {
+  createBank(name: String!, routing: Int): Bank!
+  createAccount(balance: Float!, description: String, bankId: ID!): Account!
+  updateAccount(id: ID!, balance: Float, description: String): Account!
+  deleteAccount(id: ID!): Boolean
+}
